@@ -11,7 +11,7 @@ namespace BlitzInjector.Request
         /// <summary>
         /// The url to send the request to
         /// </summary>
-        public string Url { get; set; }
+        public Uri ExecuteUrl { get; set; }
 
         /// <summary>
         /// Dictionary that say NameOfParamter => ParamterValue
@@ -30,31 +30,20 @@ namespace BlitzInjector.Request
 
         public abstract string Fetch();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="data"></param>
-        /// <param name="headers"></param>
-        /// <param name="constantData"></param>
-        public RequestHandler(string url, 
-            Dictionary<string, string> data = null, 
-            Dictionary<HttpRequestHeader, string> headers = null
-            )
+        public abstract void RefreshVariable(string value);
+
+        protected RequestHandler(Uri url,
+                                 Dictionary<HttpRequestHeader, string> headers)
         {
-            Url = url;
-
-            Data = data ?? new Dictionary<string, string>();
-
+            ExecuteUrl = url;
 
             Headers = headers ?? new Dictionary<HttpRequestHeader, string>();
-
-
         }
 
-        public void Initialize(string NewURL = "")
+
+        public void Initialize()
         {
-            RequestInstance = WebRequest.Create(String.IsNullOrEmpty(NewURL) ? Url : NewURL);
+            RequestInstance = WebRequest.Create(ExecuteUrl);
             // If the dicionary of headers have a key with the name "User Agent" add it to the Request object.
             ((HttpWebRequest)RequestInstance).UserAgent = Headers.ContainsKey(HttpRequestHeader.UserAgent)
                                                                ? Headers[HttpRequestHeader.UserAgent]

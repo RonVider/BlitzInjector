@@ -12,15 +12,23 @@ namespace BlitzInjector.Request
         /// <summary>
         /// Dictionary like Data but those paramters aint gonna change
         /// </summary>
-        public Dictionary<string, string> ConstantData { get; set; } 
+        public Dictionary<string, string> Data { get; set; }
 
-        public PostRequestHandler(string url,
-                                 Dictionary<string, string> data = null,
-                                 Dictionary<HttpRequestHeader, string> headers = null,
-                                 Dictionary<string, string> constantData = null)
-            : base(url, data, headers)
+        public string Key { get; set; }
+
+        public PostRequestHandler(Uri url,
+                                  Dictionary<string, string> data,
+                                  string key,
+                                  Dictionary<HttpRequestHeader, string> headers = null)
+            : base(url, headers)
         {
-            ConstantData = constantData ?? new Dictionary<string, string>();
+            Data = data;
+
+            Key = key;
+
+            if(!data.ContainsKey(key))
+                throw new Exception("key does not exists");
+
         }
 
         public override string Fetch()
@@ -43,6 +51,11 @@ namespace BlitzInjector.Request
 
         }
 
+        public override void RefreshVariable(string value)
+        {
+            Data[Key] = value;
+        }
+
         private string BuildDataString()
         {
             var stringBuilder = "";
@@ -55,7 +68,7 @@ namespace BlitzInjector.Request
                     stringBuilder += String.Format("&{0}={1}", parameter.Key, parameter.Value);
             }
 
-            foreach (var parameter in ConstantData)
+            foreach (var parameter in Data)
             {
                 if (stringBuilder.Length == 0)
                     stringBuilder = String.Format("{0}={1}", parameter.Key, parameter.Value);

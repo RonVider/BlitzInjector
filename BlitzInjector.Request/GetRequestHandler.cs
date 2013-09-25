@@ -8,17 +8,30 @@ namespace BlitzInjector.Request
 {
     public class GetRequestHandler : RequestHandler
     {
+        public Uri OriginalUrl;
 
-        public GetRequestHandler(string url,
-                                 Dictionary<string, string> data = null,
+        public string Variable { get; set; }
+
+        public string OriginalContent { get; set; }
+
+        public GetRequestHandler(Uri url,
+                                 string acceptableValue,
                                  Dictionary<HttpRequestHeader, string> headers = null)
-            : base(url, data, headers)
+            : base(url, headers)
         {
-        }
+            OriginalUrl = url;
 
+            Variable = acceptableValue;
+
+            RefreshVariable(Variable);
+
+            OriginalContent = Fetch();
+
+        }
         public override string Fetch()
         {
-            Initialize(CreateURL());
+    
+            Initialize();
 
             RequestInstance.Method = "GET";
 
@@ -29,18 +42,9 @@ namespace BlitzInjector.Request
 
         }
 
-        private string CreateURL()
+        public override void RefreshVariable(string value)
         {
-            var NewURL = Url;
-
-            foreach (var paramter in Data)
-            {
-                if (!NewURL.Contains(paramter.Key))
-                    throw new Exception("Unkown paramter");
-                NewURL = NewURL.Replace(paramter.Key, paramter.Value);
-            }
-
-            return NewURL;
+            ExecuteUrl = new Uri(OriginalUrl.OriginalString.Replace("{$var}", value));
         }
     }
 }
