@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzInjector", "BlitzInjector\BlitzInjector.csproj", "{3DB44FC6-98CD-474C-8140-C7D1C5DC837D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzInjector.RequestHandler", "BlitzInjector.RequestHandler\BlitzInjector.RequestHandler.csproj", "{581B638E-17DE-4605-9D66-E165D9EE1B8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzInjector.Request", "BlitzInjector.Request\BlitzInjector.Request.csproj", "{6EC123B0-DB3C-441B-A548-8A54262FF437}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzInjector.Proccess", "BlitzInjector.Proccess\BlitzInjector.Proccess.csproj", "{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DB44FC6-98CD-474C-8140-C7D1C5DC837D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DB44FC6-98CD-474C-8140-C7D1C5DC837D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DB44FC6-98CD-474C-8140-C7D1C5DC837D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DB44FC6-98CD-474C-8140-C7D1C5DC837D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{581B638E-17DE-4605-9D66-E165D9EE1B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{581B638E-17DE-4605-9D66-E165D9EE1B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{581B638E-17DE-4605-9D66-E165D9EE1B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{581B638E-17DE-4605-9D66-E165D9EE1B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC123B0-DB3C-441B-A548-8A54262FF437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC123B0-DB3C-441B-A548-8A54262FF437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC123B0-DB3C-441B-A548-8A54262FF437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC123B0-DB3C-441B-A548-8A54262FF437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
