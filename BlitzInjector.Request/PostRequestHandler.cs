@@ -8,31 +8,18 @@ namespace BlitzInjector.Request
 {
     public class PostRequestHandler : RequestHandler
     {
-
-        /// <summary>
-        /// Dictionary like Data but those paramters aint gonna change
-        /// </summary>
-        public Dictionary<string, string> Data { get; set; }
-
-        public string Key { get; set; }
-
         public PostRequestHandler(Uri url,
                                   Dictionary<string, string> data,
-                                  string key,
-                                  Dictionary<HttpRequestHeader, string> headers = null)
-            : base(url, headers)
+                                  Dictionary<string, string> headers)
+            : base(url, data, headers)
         {
-            Data = data;
-
-            Key = key;
-
-            if(!data.ContainsKey(key))
-                throw new Exception("key does not exists");
 
         }
 
-        public override string Fetch()
+        public override string Result()
         {
+            if (!Initialized)
+                throw new Exception("Initialize is required.");
 
             var byteArrayData = Encoding.UTF8.GetBytes(BuildDataString());
 
@@ -49,11 +36,6 @@ namespace BlitzInjector.Request
 
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
 
-        }
-
-        public override void RefreshVariable(string value)
-        {
-            Data[Key] = value;
         }
 
         private string BuildDataString()

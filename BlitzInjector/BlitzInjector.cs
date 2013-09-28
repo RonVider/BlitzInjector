@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlitzInjector.Request;
+using BlitzInjector.Proccess;
 
 namespace BlitzInjector
 {
     class BlitzInjector
     {
-
-        public RequestHandler Handler { get; set; }
-
-        public BlitzInjector(RequestHandler handler)
+        public static SqliProccessor Create(RequestHandler handler, string key)
         {
-            Handler = handler;
+            return new StringBasedProccessor(new BlitzRequestHandler(handler, key));
         }
     }
 }

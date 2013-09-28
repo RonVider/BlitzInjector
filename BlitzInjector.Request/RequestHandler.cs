@@ -11,7 +11,7 @@ namespace BlitzInjector.Request
         /// <summary>
         /// The url to send the request to
         /// </summary>
-        public Uri ExecuteUrl { get; set; }
+        public Uri Url { get; set; }
 
         /// <summary>
         /// Dictionary that say NameOfParamter => ParamterValue
@@ -21,47 +21,72 @@ namespace BlitzInjector.Request
         /// <summary>
         /// Dictionary that say NameOfHeader => HeaderValue
         /// </summary>
-        public Dictionary<HttpRequestHeader, string> Headers { get; set; }
+        public Dictionary<string, string> Headers { get; set; }
+
+        protected bool Initialized = false;
 
         /// <summary>
         /// The instace of the request object
         /// </summary>
         protected WebRequest RequestInstance;
 
-        public abstract string Fetch();
-
-        public abstract void RefreshVariable(string value);
+        public abstract string Result();
 
         protected RequestHandler(Uri url,
-                                 Dictionary<HttpRequestHeader, string> headers)
+                                 Dictionary<string, string> data,
+                                 Dictionary<string, string> headers)
         {
-            ExecuteUrl = url;
+            Url = url;
 
-            Headers = headers ?? new Dictionary<HttpRequestHeader, string>();
+            Data = data;
+
+            Headers = headers ?? new Dictionary<string, string>();
+
         }
 
 
         public void Initialize()
         {
-            RequestInstance = WebRequest.Create(ExecuteUrl);
+            RequestInstance = WebRequest.Create(Url);
             // If the dicionary of headers have a key with the name "User Agent" add it to the Request object.
-            ((HttpWebRequest)RequestInstance).UserAgent = Headers.ContainsKey(HttpRequestHeader.UserAgent)
-                                                               ? Headers[HttpRequestHeader.UserAgent]
-                                                               : "BlitzInjector Client";
+            //((HttpWebRequest)RequestInstance).UserAgent = Headers["UserAgent"] ?? "BlitzInjector Client";
 
 
-            RequestInstance.ContentType = Headers.ContainsKey(HttpRequestHeader.ContentType)
-                                              ? Headers[HttpRequestHeader.ContentType]
-                                              : "application/x-www-form-urlencoded";
+            //RequestInstance.ContentType = Headers["ContentType"] ?? "application/x-www-form-urlencoded";
 
             foreach (var header in Headers)
-                RequestInstance.Headers.Add(header.Key, header.Value);   
+                RequestInstance.Headers.Add(header.Key, header.Value);
+
+            Initialized = true;
         }
 
 
-        public void Ajax()
+        public RequestHandler Ajax()
         {
-            RequestInstance.Headers.Add("X-Request-With", "XMLHttpRequest");
+            Headers.Add("X-Request-With", "XMLHttpRequest");
+
+            return this;
+        }
+
+        public RequestHandler AddHeader(string name, string value)
+        {
+            Headers.Add(name, value);
+
+            return this;
+        }
+
+        public RequestHandler RemoveHeader(string name)
+        {
+            Headers.Remove(name);
+
+            return this;
+        }
+
+        public RequestHandler UpdateHeader(string name, string value)
+        {
+            Headers[name] = value;
+
+            return  this;
         }
     }
 }

@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlitzInjector.Proccess\BlitzInjector.Proccess.csproj">
+      <Project>{11a70dc9-f0af-4179-bee7-1d099c1620d5}</Project>
+      <Name>BlitzInjector.Proccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlitzInjector.Request\BlitzInjector.Request.csproj">
       <Project>{6ec123b0-db3c-441b-a548-8a54262ff437}</Project>
       <Name>BlitzInjector.Request</Name>
