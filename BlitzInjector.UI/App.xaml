@@ -1,0 +1,10 @@
+﻿<Application x:Class="BlitzInjector.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <BitmapImage x:Key="DiamondIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\Ron\Documents\Visual Studio 2012\Projects\BlitzInjector\BlitzInjector.UI\Resources\1380422146_diamond.png"/>
+
+    </Application.Resources>
+</Application>

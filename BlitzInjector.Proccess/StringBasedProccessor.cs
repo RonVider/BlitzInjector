@@ -26,7 +26,28 @@ namespace BlitzInjector.Proccess
             : base(handler)
         {
             ERROR_CHAR = String.IsNullOrEmpty(error) ? "You have an error in your SQL syntax" : error;
+        }
 
+        public override SqliProccessor Initilaize()
+        {
+            base.Initilaize();
+            
+            StringBasedInitilaize();
+
+            return this;
+        }
+
+        public override SqliProccessor Initilaize(string url, int port)
+        {
+            base.Initilaize(url, port);
+
+            StringBasedInitilaize();
+
+            return this;
+        }
+
+        private void StringBasedInitilaize()
+        {
             RevaleEscapeChar();
             FindColumns();
 
@@ -43,6 +64,7 @@ namespace BlitzInjector.Proccess
 
             for (var i = 0; i < Columns; i++)
             {
+                var temp = Handler.ChangeKeyValue(ReadyQuery).Result();
                 if (content.Contains("!!BlitzVar" + i + "!!"))
                 {
                     VariableQueryName = "'!!BlitzVar" + i + "!!'";
@@ -59,6 +81,7 @@ namespace BlitzInjector.Proccess
             {
                 Escape = "'";
 
+//                string temp = String.Format("{0}\"", AcceptableValue);
                 if (ContainsError(String.Format("{0}\"", AcceptableValue)))
                     Escape = "";
             }

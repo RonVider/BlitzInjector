@@ -27,12 +27,27 @@ namespace BlitzInjector.Proccess
             Handler = handler;
 
             AcceptableValue = Handler.AcceptableValue;
-
-            handler.Initilaize();
-
-            OriginalContent = handler.Result();
         }
 
+        public virtual SqliProccessor Initilaize()
+        {
+            Handler.Initilaize();
+
+            OriginalContent = Handler.Result();
+
+            return this;
+        }
+
+        public virtual SqliProccessor Initilaize(string url, int port)
+        {
+            Handler.Initilaize();
+
+            Handler.Proxy(url, port);
+
+            OriginalContent = Handler.Result();
+
+            return this;
+        }
       
     }
 

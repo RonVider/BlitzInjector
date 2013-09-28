@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzInjector.Request", "Bl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzInjector.Proccess", "BlitzInjector.Proccess\BlitzInjector.Proccess.csproj", "{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzInjector.UI", "BlitzInjector.UI\BlitzInjector.UI.csproj", "{3A1766F1-3DE1-4C89-9F5C-46A6CE958D26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11A70DC9-F0AF-4179-BEE7-1D099C1620D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A1766F1-3DE1-4C89-9F5C-46A6CE958D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1766F1-3DE1-4C89-9F5C-46A6CE958D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1766F1-3DE1-4C89-9F5C-46A6CE958D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1766F1-3DE1-4C89-9F5C-46A6CE958D26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

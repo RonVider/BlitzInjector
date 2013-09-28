@@ -88,5 +88,12 @@ namespace BlitzInjector.Request
 
             return  this;
         }
+
+        public RequestHandler Proxy(string ip, int port)
+        {
+            RequestInstance.Proxy = new WebProxy(ip, port);
+
+            return this;
+        }
     }
 }

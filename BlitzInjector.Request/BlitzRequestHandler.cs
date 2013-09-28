@@ -48,5 +48,12 @@ namespace BlitzInjector.Request
             return this;
         }
 
+        public BlitzRequestHandler Proxy(string url, int port)
+        {
+            Handler.Proxy(url, port);
+
+            return this;
+        }
+
     }
 }
